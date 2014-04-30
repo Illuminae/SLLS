@@ -32,7 +32,7 @@ public class Controller extends HttpServlet
         String viewPage = command.execute();
         
         RequestDispatcher rd = request.getRequestDispatcher(viewPage);
-        rd.forward(request, response);        
+        rd.forward(request, response); 
     }
     
         @Override

@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package models;
 
+import active_record.RegisteredUserActiveRecord;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -30,10 +30,28 @@ public class create_user extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            
-        }
+        String first_name = (String) request.getParameter("firstName");
+        String last_name = (String) request.getParameter("lastName");
+        String password = (String) request.getParameter("pWord");
+        String user_name = (String) request.getParameter("userName");
+        String zip_code = (String) request.getParameter("zipCode");
+        String city = (String) request.getParameter("city");
+        String street = (String) request.getParameter("street");
+        String house_no = (String) request.getParameter("houseNo");
+        String iban = (String) request.getParameter("iban");
+        
+        RegisteredUserActiveRecord user = new RegisteredUserActiveRecord();
+        user.setFirst_name(first_name);
+        user.setLast_name(last_name);
+        user.setPassword(password);
+        user.setUser_name(user_name);
+        user.setZip_code(zip_code);
+        user.setTown(city);
+        user.setStreet(street);
+        user.setHouse_no(house_no);
+        user.setIban(iban);
+        
+        boolean insertSuccess = user.insert();
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
