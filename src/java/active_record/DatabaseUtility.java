@@ -15,9 +15,9 @@ import java.sql.SQLException;
  */
 public abstract class DatabaseUtility {
 
-    static String dbUrl = "jdbc:derby://localhost:1527/slls";
-    static String dbName = "administrator";
-    static String dbPword = "geheim";
+    public final static String dbUrl = "jdbc:derby://localhost:1527/slls";
+    private final static String dbName = "administrator";
+    private final static String dbPword = "geheim";
 
     protected static Connection getDatabaseConnection() throws Exception {
         Connection con = null;
@@ -33,4 +33,12 @@ public abstract class DatabaseUtility {
 
     }
 
+    protected static void closeDatabaseConnection(Connection con) throws Exception {
+        try {
+            con.close();
+        } catch (SQLException sqle) {
+            String msg = "Problem closing the connection to the database";
+            throw new Exception(msg, sqle);
+        }
+    }
 }
