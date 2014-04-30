@@ -52,6 +52,7 @@ public class create_user extends HttpServlet {
         user.setIban(iban);
         
         boolean insertSuccess = user.insert();
+        request.setAttribute("insertSuccess", insertSuccess);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

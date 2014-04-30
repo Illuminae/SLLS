@@ -1,3 +1,4 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -23,11 +24,11 @@ and open the template in the editor.
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a href="index.html" class ="navbar-brand">SLLS</a>
+                    <a href="index.jsp" class ="navbar-brand">SLLS</a>
                 </div>
                 <div class = "navbar-collapse navbar-responsive-collapse collapse" style ="height: auto;">
                     <ul class = "nav navbar-nav navbar-left">
-                        <li class = "active"><a href = "./index.html">Home</a></li>
+                        <li class = "active"><a href = "./index.jsp">Home</a></li>
                         <li><a href = "./public/downloads.jsp">Downloads</a></li>
                         <li><a href = "./public/sitenotice.jsp">Site Notice</a></li>
                     </ul>
@@ -70,6 +71,11 @@ and open the template in the editor.
                 <div class ="col-lg-5">
                     <div class="panel panel-default">
                         <div class ="panel-body">
+                            <c:if test = "${requestScope.insertSuccess}">
+                                <div class="alert alert-dismissable alert-success">
+                                    <button type="button" class="close" data-dismiss="alert">×</button>
+                                    <strong>Well done!</strong> You successfully registered with SLLS.
+                                </div></c:if>
                             <div class ="page-header">
                                 <h3><small> Register now!</small></h3>
                             </div>

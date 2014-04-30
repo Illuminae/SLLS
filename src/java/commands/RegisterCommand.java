@@ -30,7 +30,7 @@ public class RegisterCommand implements Command{
         String viewName;
         RequestDispatcher rd = request.getRequestDispatcher("/create_user");
         rd.include(request,response);
-         viewName = "/index.html";
+         viewName = "/index.jsp";
         
         
         
