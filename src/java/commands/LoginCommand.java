@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package commands;
 
 import java.io.IOException;
@@ -15,22 +16,27 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Erik
  */
-public class RegisterCommand implements Command {
-
+public class LoginCommand implements Command {
     private HttpServletRequest request;
     private HttpServletResponse response;
 
-    public RegisterCommand(HttpServletRequest request, HttpServletResponse response) {
+    public LoginCommand(HttpServletRequest request, HttpServletResponse response)
+    {
         this.request = request;
         this.response = response;
     }
-
-    public String execute() throws ServletException, IOException {
+    
+     public String execute() throws ServletException, IOException
+    {  
         String viewName;
-        RequestDispatcher rd = request.getRequestDispatcher("/create_user");
+        RequestDispatcher rd = request.getRequestDispatcher("/user_login");
         rd.include(request, response);
-        viewName = "/index.jsp";
-
+        boolean isLoggedIn = (Boolean) request.getSession().getAttribute("isVerified");
+        if (isLoggedIn){
+            viewName = "/test.html";
+        } else {
+            viewName = "/index.jsp";           
+        }
         return viewName;
     }
 }

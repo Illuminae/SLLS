@@ -53,8 +53,8 @@ public class RegisteredUserActiveRecord extends DatabaseUtility {
     public String getLast_name() {
         return last_name;
     }
-    
-    public int getUser_id(){
+
+    public int getUser_id() {
         return user_id;
     }
 
@@ -142,6 +142,29 @@ public class RegisteredUserActiveRecord extends DatabaseUtility {
         this.iban = iban;
     }
 
+    public boolean verifyUserdata(String user, String password) {
+        boolean isVerified = false;
+        try {
+            Connection con = getDatabaseConnection();
+            PreparedStatement stmt = null;
+            stmt = con.prepareStatement("SELECT PASSWORD FROM REGISTERED_USERS WHERE USER_NAME = ?");
+            stmt.setString(1, user);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                String dbpw = rs.getString("PASSWORD");
+                if (dbpw.equals(password)) {
+                    isVerified = true;
+                    return isVerified;
+                } 
+            } else {
+                return isVerified;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return isVerified;
+    }
+
     public boolean insert() {
         int i = -1;
         ResultSet generatedKeys;
@@ -156,7 +179,7 @@ public class RegisteredUserActiveRecord extends DatabaseUtility {
                 stmt.setString(4, this.password);
                 i = stmt.executeUpdate();
                 generatedKeys = stmt.getGeneratedKeys();
-                if (generatedKeys.next()){
+                if (generatedKeys.next()) {
                     this.user_id = generatedKeys.getInt(1);
                 }
             } catch (SQLException sqle) {

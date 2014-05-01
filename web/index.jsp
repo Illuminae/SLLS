@@ -36,7 +36,7 @@ and open the template in the editor.
                         <li class="dropdown">
                             <a class="dropdown-toggle" href="#" data-toggle="dropdown">Sign In <strong class="caret"></strong></a>
                             <div class="dropdown-menu" style="padding: 15px; padding-bottom: 15px;">
-                                <form action="Controller" method="post" accept-charset="UTF-8">
+                                <form action="Controller" method="post">
                                     <input id="user_username" style="margin-bottom: 15px;" type="text" name="UserUsername" size="30" placeholder="Username"/>
                                     <input id="user_password" style="margin-bottom: 15px;" type="password" name="UserPword" size="30" placeholder="Password"/>
                                     <button class="btn btn-default" style="clear: left; width: 100%; height: 32px; padding: 0px" type="submit" name="command" value="login"/>Login</button>

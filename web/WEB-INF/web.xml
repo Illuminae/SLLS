@@ -8,6 +8,10 @@
         <servlet-name>create_user</servlet-name>
         <servlet-class>models.create_user</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>user_login</servlet-name>
+        <servlet-class>models.user_login</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Controller</servlet-name>
         <url-pattern>/Controller</url-pattern>
@@ -16,9 +20,13 @@
         <servlet-name>create_user</servlet-name>
         <url-pattern>/create_user</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>user_login</servlet-name>
+        <url-pattern>/user_login</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
-            30
+            60
         </session-timeout>
     </session-config>
 </web-app>
