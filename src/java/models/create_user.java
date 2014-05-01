@@ -30,16 +30,24 @@ public class create_user extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String first_name = (String) request.getParameter("firstName");
-        String last_name = (String) request.getParameter("lastName");
-        String password = (String) request.getParameter("pWord");
-        String user_name = (String) request.getParameter("userName");
-        String zip_code = (String) request.getParameter("zipCode");
-        String city = (String) request.getParameter("city");
-        String street = (String) request.getParameter("street");
-        String house_no = (String) request.getParameter("houseNo");
-        String iban = (String) request.getParameter("iban");
+        String first_name = (String) request.getParameter("firstName").trim();
+        String last_name = (String) request.getParameter("lastName").trim();
+        String password = (String) request.getParameter("pWord").trim();
+        String user_name = (String) request.getParameter("userName").trim();
+        String zip_code = (String) request.getParameter("zipCode").trim();
+        String city = (String) request.getParameter("city").trim();
+        String street = (String) request.getParameter("street").trim();
+        String house_no = (String) request.getParameter("houseNo").trim();
+        String iban = (String) request.getParameter("iban").trim();
         
+        if ( first_name.isEmpty() || last_name.isEmpty() || password.isEmpty() || 
+             user_name.isEmpty() || zip_code.isEmpty() || city.isEmpty() ||
+             street.isEmpty() || house_no.isEmpty() || iban.isEmpty()
+                ){
+            boolean insertSuccess = false;
+            request.setAttribute("insertSuccess", insertSuccess);
+            
+        }else {
         RegisteredUserActiveRecord user = new RegisteredUserActiveRecord();
         user.setFirst_name(first_name);
         user.setLast_name(last_name);
@@ -53,6 +61,7 @@ public class create_user extends HttpServlet {
         
         boolean insertSuccess = user.insert();
         request.setAttribute("insertSuccess", insertSuccess);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
