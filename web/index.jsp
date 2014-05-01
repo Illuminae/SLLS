@@ -71,11 +71,22 @@ and open the template in the editor.
                 <div class ="col-lg-5">
                     <div class="panel panel-default">
                         <div class ="panel-body">
-                            <c:if test = "${requestScope.insertSuccess}">
-                                <div class="alert alert-dismissable alert-success">
-                                    <button type="button" class="close" data-dismiss="alert">×</button>
-                                    <strong>Well done!</strong> You successfully registered with SLLS.
-                                </div></c:if>
+                            <c:set var="success" value="${requestScope.insertSuccess}" />
+                            <c:choose>
+                                <c:when test = "${success != null && success}">
+
+                                    <div class="alert alert-dismissable alert-success">
+                                        <button type="button" class="close" data-dismiss="alert">×</button>
+                                        <strong>Well done!</strong> You successfully registered with SLLS.
+                                    </div>
+                                </c:when>
+                                <c:when test ="${success != null && !success}">
+                                    <div class="alert alert-dismissable alert-danger">
+                                        <button type="button" class="close" data-dismiss="alert">×</button>
+                                        <strong>Sorry!</strong> Something went wrong. Please try again.
+                                    </div>
+                                </c:when>
+                            </c:choose>
                             <div class ="page-header">
                                 <h3><small> Register now!</small></h3>
                             </div>
