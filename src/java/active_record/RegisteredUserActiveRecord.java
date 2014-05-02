@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  *
@@ -83,7 +84,9 @@ public class RegisteredUserActiveRecord extends DatabaseUtility {
     }
 
     /**
-     * returns user type 1 = Service-User 2 = Premium-User 3 = Librarian 4 =Administrator
+     * returns user type 1 = Service-User 2 = Premium-User 3 = Librarian 4
+     * =Administrator
+     *
      * @return
      */
     public int getUser_type() {
@@ -208,30 +211,26 @@ public class RegisteredUserActiveRecord extends DatabaseUtility {
             e.printStackTrace();
         }
         return userList;
-        
+
     }
 
-    public boolean verifyUserdata(String user, String password) {
+    public void verifyUserdata(String user, String password, HttpServletRequest request) {
         boolean isVerified = false;
         try {
             Connection con = getDatabaseConnection();
             PreparedStatement stmt = null;
-            stmt = con.prepareStatement("SELECT PASSWORD FROM REGISTERED_USERS WHERE USER_NAME = ?");
-            stmt.setString(1, user);
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
-                String dbpw = rs.getString("PASSWORD");
-                if (dbpw.equals(password)) {
-                    isVerified = true;
-                    return isVerified;
-                }
-            } else {
-                return isVerified;
+            ArrayList<RegisteredUserActiveRecord> e = getUserList(user);
+            if (e.get(0).password.equals(password)) {
+                isVerified = true;
+                request.getSession().setAttribute("userType", e.get(0).user_type);
+                request.getSession().setAttribute("isVerified", isVerified);
+                request.getSession().setAttribute("currentUser", e.get(0));
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return isVerified;
+        request.getSession().setAttribute("isVerified", isVerified);
+        request.setAttribute("insertSuccess", isVerified);
     }
 
     public boolean insert() {

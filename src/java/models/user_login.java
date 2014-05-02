@@ -36,18 +36,8 @@ public class user_login extends HttpServlet {
         String username = request.getParameter("UserUsername");
         String password = request.getParameter("UserPword");
         RegisteredUserActiveRecord currentUser = new RegisteredUserActiveRecord();
-        boolean isVerified = currentUser.verifyUserdata(username, password);
-        if (isVerified){
-            int userType = currentUser.getUser_type();
-            session.setAttribute("userType", userType);
-            session.setAttribute("isVerified", isVerified);
-        } else {
-            /**
-             * insertSuccess is used to give Error Message. 
-             */
-            session.setAttribute("isVerified", isVerified);
-            request.setAttribute("insertSuccess", isVerified);
-        } 
+        currentUser.verifyUserdata(username, password, request);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
