@@ -7,14 +7,28 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="/SLLS/index.jsp" class ="navbar-brand">SLLS</a>
+            <c:set var="login" value="${sessionScope.isVerified}"/>
+            <c:choose>
+                <c:when test="${login == null || !login}">
+                    <a href="/SLLS/index.jsp" class ="navbar-brand">SLLS</a>
+                </c:when>
+                <c:when test="${login != null || login}">
+                    <a href="/SLLS/home.jsp" class ="navbar-brand">SLLS</a>
+                </c:when>
+            </c:choose>
         </div>
         <div class = "navbar-collapse navbar-responsive-collapse collapse" style ="height: auto;">
             <ul class = "nav navbar-nav navbar-left">
-                <li class = "active"><a href = "/SLLS/index.jsp">Home</a></li>
+                <c:choose>
+                    <c:when test="${login == null || !login}">
+                        <li class = "active"><a href = "/SLLS/index.jsp">Home</a></li>
+                    </c:when>
+                    <c:when test="${login != null ||login}">
+                        <li class = "active"><a href = "/SLLS/home.jsp">Home</a></li>
+                    </c:when>
+                </c:choose>
                 <li><a href = "/SLLS/public/downloads.jsp">Downloads</a></li>
                 <li><a href = "/SLLS/public/sitenotice.jsp">Site Notice</a></li>
-                    <c:set var="login" value="${sessionScope.isVerified}"/>
                     <c:choose>
                         <c:when test="${login == null || !login}">
                         </c:when>
@@ -31,10 +45,9 @@
                                 <li><a href = "#">Admin Panel</a></li>
                                 </c:when>
                             </c:choose>
-                    </c:when>
-                </c:choose>
+                        </c:when>
+                    </c:choose>
             </ul>
-            <c:set var="login" value="${sessionScope.isVerified}"/>
             <c:choose>
                 <c:when test="${login == null || !login}">
                     <ul class ="nav navbar-nav navbar-right">
@@ -51,9 +64,9 @@
                     </ul>
                 </c:when>
                 <c:when test="${login != null || login}">
-                        <ul class ="nav navbar-nav navbar-right">
-                            <li class="active"><a href="/SLLS/Controller?command=logout">Logout</a></li>
-                        </ul>
+                    <ul class ="nav navbar-nav navbar-right">
+                        <li class="active"><a href="/SLLS/Controller?command=logout">Logout</a></li>
+                    </ul>
                 </c:when>
             </c:choose>
 

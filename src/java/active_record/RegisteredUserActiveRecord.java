@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -46,6 +47,21 @@ public class RegisteredUserActiveRecord extends DatabaseUtility {
         this.iban = null;
     }
 
+    public RegisteredUserActiveRecord(String first_name, String last_name, String user_name, String password, int user_type, String zip_code, String town, String street, String house_no, Integer total_fines, String iban, int user_id) {
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.user_name = user_name;
+        this.password = password;
+        this.user_type = user_type;
+        this.zip_code = zip_code;
+        this.town = town;
+        this.street = street;
+        this.house_no = house_no;
+        this.total_fines = total_fines;
+        this.iban = iban;
+        this.user_id = user_id;
+    }
+
     public String getFirst_name() {
         return first_name;
     }
@@ -66,11 +82,12 @@ public class RegisteredUserActiveRecord extends DatabaseUtility {
         return password;
     }
 
+    /**
+     * returns user type 1 = Service-User 2 = Premium-User 3 = Librarian 4 =Administrator
+     * @return
+     */
     public int getUser_type() {
-        /**
-         * returns user type 1 = Service-User 2 = Premium-User 3 = Librarian 4 =
-         * Administrator
-         */
+
         return user_type;
     }
 
@@ -142,6 +159,58 @@ public class RegisteredUserActiveRecord extends DatabaseUtility {
         this.iban = iban;
     }
 
+    public static ArrayList<RegisteredUserActiveRecord> getUserList() {
+        ArrayList<RegisteredUserActiveRecord> userList = new ArrayList<RegisteredUserActiveRecord>();
+        try {
+            Connection con = getDatabaseConnection();
+            PreparedStatement stmt = null;
+            stmt = con.prepareStatement("SELECT * FROM SERVICE_USERS_FULL");
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                RegisteredUserActiveRecord e = new RegisteredUserActiveRecord(rs.getString("FIRST_NAME"),
+                        rs.getString("LAST_NAME"), rs.getString("USER_NAME"), rs.getString("PASSWORD"), rs.getInt("USER_TYPE"),
+                        rs.getString("ZIP_CODE"), rs.getString("TOWN"), rs.getString("STREET"),
+                        rs.getString("HOUSE_NO"), rs.getInt("TOTAL_FINES"), rs.getString("IBAN"), rs.getInt("USER_ID"));
+                userList.add(e);
+            }
+            rs.close();
+            stmt.close();
+
+        } catch (Exception sqle) {
+            sqle.printStackTrace();
+        }
+        return userList;
+    }
+
+    /**
+     * Returns List with one item: ActiveRecord of required User
+     *
+     * @return
+     */
+    public static ArrayList<RegisteredUserActiveRecord> getUserList(String user_name) {
+        ArrayList<RegisteredUserActiveRecord> userList = new ArrayList<RegisteredUserActiveRecord>();
+        try {
+            Connection con = getDatabaseConnection();
+            PreparedStatement stmt = null;
+            stmt = con.prepareStatement("SELECT * FROM SERVICE_USERS_FULL WHERE USER_NAME = ?");
+            stmt.setString(1, user_name);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                RegisteredUserActiveRecord e = new RegisteredUserActiveRecord(rs.getString("FIRST_NAME"),
+                        rs.getString("LAST_NAME"), rs.getString("USER_NAME"), rs.getString("PASSWORD"), rs.getInt("USER_TYPE"),
+                        rs.getString("ZIP_CODE"), rs.getString("TOWN"), rs.getString("STREET"),
+                        rs.getString("HOUSE_NO"), rs.getInt("TOTAL_FINES"), rs.getString("IBAN"), rs.getInt("USER_ID"));
+                userList.add(e);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return userList;
+        
+    }
+
     public boolean verifyUserdata(String user, String password) {
         boolean isVerified = false;
         try {
@@ -155,7 +224,7 @@ public class RegisteredUserActiveRecord extends DatabaseUtility {
                 if (dbpw.equals(password)) {
                     isVerified = true;
                     return isVerified;
-                } 
+                }
             } else {
                 return isVerified;
             }

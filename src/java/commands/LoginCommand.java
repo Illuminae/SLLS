@@ -33,7 +33,7 @@ public class LoginCommand implements Command {
         rd.include(request, response);
         boolean isLoggedIn = (Boolean) request.getSession().getAttribute("isVerified");
         if (isLoggedIn){
-            viewName = "/index.jsp";
+            viewName = "/home.jsp";
         } else {
             viewName = "/index.jsp";           
         }
