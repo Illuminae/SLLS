@@ -22,6 +22,8 @@ public abstract class CommandFactory
                 command = new RegisterCommand(request, response);
             } else if (userCommand.equalsIgnoreCase("login")){
                 command = new LoginCommand(request, response);
+            } else if (userCommand.equalsIgnoreCase("logout")){
+                command = new LogoutCommand(request, response);
             }
             
         }

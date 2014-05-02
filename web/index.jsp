@@ -16,38 +16,9 @@ and open the template in the editor.
     </head>
     <body>
 
-        <div class = "navbar navbar-inverse">
-            <div class = "container">
-                <div class = "navbar-header">
-                    <button type="button" class = "navbar-toggle" data-toggle = "collapse" data-target=".navbar-responsive-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a href="index.jsp" class ="navbar-brand">SLLS</a>
-                </div>
-                <div class = "navbar-collapse navbar-responsive-collapse collapse" style ="height: auto;">
-                    <ul class = "nav navbar-nav navbar-left">
-                        <li class = "active"><a href = "./index.jsp">Home</a></li>
-                        <li><a href = "./public/downloads.jsp">Downloads</a></li>
-                        <li><a href = "./public/sitenotice.jsp">Site Notice</a></li>
-                    </ul>
-                    <ul class ="nav navbar-nav navbar-right">
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" href="#" data-toggle="dropdown">Sign In <strong class="caret"></strong></a>
-                            <div class="dropdown-menu" style="padding: 15px; padding-bottom: 15px;">
-                                <form action="Controller" method="post">
-                                    <input id="user_username" style="margin-bottom: 15px;" type="text" name="UserUsername" size="30" placeholder="Username"/>
-                                    <input id="user_password" style="margin-bottom: 15px;" type="password" name="UserPword" size="30" placeholder="Password"/>
-                                    <button class="btn btn-default" style="clear: left; width: 100%; height: 32px; padding: 0px" type="submit" name="command" value="login"/>Login</button>
-                                </form>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div> 
-        </div>
-        <div class ="container">
+        <jsp:include page="/components/header.jsp"/>
+        
+       <div class ="container">
             <div class ="row">
                 <div class ="col-lg-7">
                     <div class = "panel panel-default">
@@ -75,16 +46,18 @@ and open the template in the editor.
                             <c:choose>
                                 <c:when test = "${success != null && success}">
 
-                                    <div class="alert alert-dismissable alert-success">
+                                    <div class="alert alert-dismissable alert-success user-feedback">
                                         <button type="button" class="close" data-dismiss="alert">×</button>
                                         <strong>Well done!</strong> You successfully registered with SLLS.
                                     </div>
                                 </c:when>
                                 <c:when test ="${success != null && !success}">
-                                    <div class="alert alert-dismissable alert-danger">
+                                   
+                                    <div class="alert alert-dismissable alert-danger user-feedback">
                                         <button type="button" class="close" data-dismiss="alert">×</button>
                                         <strong>Sorry!</strong> Something went wrong. Please try again.
                                     </div>
+                                    
                                 </c:when>
                             </c:choose>
                             <div class ="page-header">

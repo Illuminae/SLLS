@@ -12,6 +12,10 @@
         <servlet-name>user_login</servlet-name>
         <servlet-class>models.user_login</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LogoutCommand</servlet-name>
+        <servlet-class>commands.LogoutCommand</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Controller</servlet-name>
         <url-pattern>/Controller</url-pattern>
@@ -24,9 +28,11 @@
         <servlet-name>user_login</servlet-name>
         <url-pattern>/user_login</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogoutCommand</servlet-name>
+        <url-pattern>/LogoutCommand</url-pattern>
+    </servlet-mapping>
     <session-config>
-        <session-timeout>
-            60
-        </session-timeout>
+        <session-timeout>60</session-timeout>
     </session-config>
 </web-app>

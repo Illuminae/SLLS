@@ -7,4 +7,13 @@ and open the template in the editor.
     Created on : 23-Mar-2014, 18:49:13
     Author     : Erik
 */
+.page-header {
+    margin-top: 0;
+}
+.panel-body {
+    padding-top:0;
+}
 
+.user-feedback {
+    margin-top: 15px;
+}

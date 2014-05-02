@@ -42,7 +42,11 @@ public class user_login extends HttpServlet {
             session.setAttribute("userType", userType);
             session.setAttribute("isVerified", isVerified);
         } else {
+            /**
+             * insertSuccess is used to give Error Message. 
+             */
             session.setAttribute("isVerified", isVerified);
+            request.setAttribute("insertSuccess", isVerified);
         } 
     }
 
