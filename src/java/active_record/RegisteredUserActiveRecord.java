@@ -233,12 +233,17 @@ public class RegisteredUserActiveRecord extends DatabaseUtility {
         request.setAttribute("insertSuccess", isVerified);
     }
 
+    /**
+     * Pushes data in an activeRecord to database
+     * @return true if successful
+     */
     public boolean insert() {
         int i = -1;
         ResultSet generatedKeys;
         try {
             Connection con = getDatabaseConnection();
             PreparedStatement stmt = null;
+            con.setAutoCommit(false);
             try {
                 stmt = con.prepareStatement("INSERT INTO REGISTERED_USERS (first_name, last_name, user_name, password) VALUES (?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
                 stmt.setString(1, this.first_name);
@@ -262,6 +267,10 @@ public class RegisteredUserActiveRecord extends DatabaseUtility {
                 stmt.setString(5, this.house_no);
                 stmt.setString(6, this.iban);
                 i = stmt.executeUpdate();
+                if (i == 1) {
+                    con.commit();
+                    con.setAutoCommit(true);
+                }
             } else {
                 return false;
             }

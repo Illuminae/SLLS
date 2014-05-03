@@ -22,11 +22,11 @@
                 <c:choose>
                     <c:when test="${login == null || !login}">
                         <li class = "active"><a href = "/SLLS/index.jsp">Home</a></li>
-                    </c:when>
-                    <c:when test="${login != null ||login}">
+                        </c:when>
+                        <c:when test="${login != null ||login}">
                         <li class = "active"><a href = "/SLLS/home.jsp">Home</a></li>
-                    </c:when>
-                </c:choose>
+                        </c:when>
+                    </c:choose>
                 <li><a href = "/SLLS/public/downloads.jsp">Downloads</a></li>
                 <li><a href = "/SLLS/public/sitenotice.jsp">Site Notice</a></li>
                     <c:choose>
@@ -36,7 +36,7 @@
                             <c:set var="user_type" value="${sessionScope.userType}"/>
                             <c:choose>
                                 <c:when test="${user_type == 1 ||user_type == 2}">
-                                <li><a href = "#">Book Search</a></li>
+                                <li><a href = "/SLLS/Controller?command=booksearch">Book Search</a></li>
                                 <li><a href = "#">User Settings</a></li>
                                 <li><a href = "#">My Books</a></li>
                                 </c:when>
