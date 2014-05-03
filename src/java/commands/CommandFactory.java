@@ -26,6 +26,8 @@ public abstract class CommandFactory
                 command = new LogoutCommand(request, response);
             } else if (userCommand.equalsIgnoreCase("booksearch")){
                 command = new BookSearchCommand(request, response);
+            } else if (userCommand.equalsIgnoreCase("mybooks")){
+                command = new MyBooksCommand(request, response);
             }
             
         }

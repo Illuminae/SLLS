@@ -38,7 +38,7 @@
                                 <c:when test="${user_type == 1 ||user_type == 2}">
                                 <li><a href = "/SLLS/Controller?command=booksearch">Book Search</a></li>
                                 <li><a href = "#">User Settings</a></li>
-                                <li><a href = "#">My Books</a></li>
+                                <li><a href = "/SLLS/Controller?command=mybooks">My Books</a></li>
                                 </c:when>
                                 <c:when test="${user_type == 3 ||user_type == 4}">
                                 <li><a href = "#">Review Section</a></li>

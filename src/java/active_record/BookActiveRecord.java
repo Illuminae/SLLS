@@ -37,6 +37,7 @@ public class BookActiveRecord extends DatabaseUtility {
     }
 
     public BookActiveRecord() {
+        this.status = "Available";
     }
 
     /**
@@ -66,12 +67,34 @@ public class BookActiveRecord extends DatabaseUtility {
         return bookList;
     }
     
+    public static ArrayList<BookActiveRecord> getBookList(RegisteredUserActiveRecord user){
+        ArrayList<BookActiveRecord> myBookList = new ArrayList<>();
+        try {
+            Connection con = getDatabaseConnection();
+            PreparedStatement stmt = null;
+            stmt = con.prepareStatement("SELECT * FROM BOOKS WHERE OWNER = ?");
+            stmt.setInt(1, user.getUser_id());
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                BookActiveRecord e = new BookActiveRecord(rs.getString("STATUS"),
+                        rs.getString("ISBN"), rs.getString("AUTHOR"), rs.getString("TITLE"), rs.getInt("PUB_YEAR"),
+                        rs.getString("PUBLISHER"), rs.getInt("OWNER"));
+                myBookList.add(e);
+            }
+            rs.close();
+            stmt.close();
+
+        } catch (Exception sqle) {
+            sqle.printStackTrace();
+        }
+        return myBookList;
+    }
     /**
      * Pushes data of an BookActiveRecord to DB
      * @return true if successful
      */
-  /**
-   * public boolean insert() {
+  
+   public boolean insert() {
         int updateCount = -1;
         try {
             Connection con = getDatabaseConnection();
@@ -89,7 +112,8 @@ public class BookActiveRecord extends DatabaseUtility {
             } catch (SQLException sqle) {
                 sqle.printStackTrace();
             }
-            if (updateCount == 1) {
+            /* To be implemented: Adding of Tags when new book is added
+             if (updateCount == 1) {
                 stmt = con.prepareStatement("INSERT INTO BOOKS_TAGS (user_id, zip_code, town, street, house_no, iban) VALUES (?,?,?,?,?,?)");
                 stmt.setInt(1, this.user_id);
                 stmt.setString(2, this.zip_code);
@@ -101,13 +125,14 @@ public class BookActiveRecord extends DatabaseUtility {
             } else {
                 return false;
             }
+           */
 
         } catch (Exception e) {
             e.printStackTrace();
         }
         return 1 == updateCount;
 
-    }**/
+    }
 
 
     public void setStatus(String status) {
