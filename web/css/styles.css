@@ -17,3 +17,13 @@ and open the template in the editor.
 .user-feedback {
     margin-top: 15px;
 }
+
+
+/* row selection */
+.selectable {
+    cursor: pointer;
+}
+.selectedRow {
+    font-weight: bold;
+    background-color: #c0c0c0;
+}

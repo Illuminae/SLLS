@@ -30,11 +30,7 @@
                             <div class ="page-header">
                                 <h3>Specified Literature Lending System Book Search</h3>
                             </div>
-                            <script type="text/javascript">
-                            $(document).ready( function () {
-                            $('#table_id').DataTable();
-                            } );
-                            </script>
+
                             <table id="table_id" class="table table-hover table-striped table-bordered display">
                                 <thead>
                                     <tr>
@@ -57,7 +53,7 @@
                                 </thead>
                                 <tbody>
                                     <t:GenerateTable list="${requestScope.bookList}">
-                                        <tr>
+                                        <tr class="selectable">
                                             <td>
                                                 ${isbn}
                                             </td>
@@ -76,11 +72,46 @@
                                         </tr>
                                     </t:GenerateTable>
                                 </tbody>
-                            </table>                            
+                            </table>
+                            <button id="lend_button" type="button" class="btn btn-primary btn-sm btn-block hidden">I want this one!</button>
+                            <c:set var="success" value="${requestScope.lendSuccess}" />
+                            <c:choose>
+                                <c:when test = "${success != null && success}">
+
+                                    <div class="alert alert-dismissable alert-success user-feedback">
+                                        <button type="button" class="close" data-dismiss="alert">×</button>
+                                        <strong>Well done!</strong> The owner has been notified about your request.
+                                    </div>
+                                </c:when>
+                                <c:when test ="${success != null && !success}">
+
+                                    <div class="alert alert-dismissable alert-danger user-feedback">
+                                        <button type="button" class="close" data-dismiss="alert">×</button>
+                                        <strong>Sorry!</strong> Something went wrong. Please try again.
+                                    </div>
+
+                                </c:when>
+                            </c:choose>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#table_id').DataTable();
+
+                $('.selectable').click(function() {
+                    $('.selectedRow').removeClass("selectedRow");
+                    $(this).addClass("selectedRow");
+                    $('#lend_button').removeClass("hidden");
+                    //$('#lend_button').show();
+                });
+
+                $('#lend_button').click(function() {
+                    window.location.href = "/SLLS/Controller?command=lend_book&isbn=" + $('.selectedRow').get(0).childNodes[1].innerText;
+                });
+            });
+        </script>
     </body>
 </html>

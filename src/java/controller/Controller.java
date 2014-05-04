@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package controller;
 
 import commands.Command;
@@ -19,33 +18,36 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Erik
  */
-public class Controller extends HttpServlet
-{
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+public class Controller extends HttpServlet {
+
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         /**
-        *Creation of command by CommandFactory
-        */
+         * Creation of command by CommandFactory
+         */
         Command command = CommandFactory.createCommand(request, response);
         /**
-         * method execute of respective command created by factory executed, returns respective view
+         * method execute of respective command created by factory executed,
+         * returns respective view
          */
-        String viewPage = command.execute();
-        
+        String viewPage;
+        if (command == null) {
+            viewPage = "/index.jsp";
+        } else {
+            viewPage = command.execute();
+        }
         RequestDispatcher rd = request.getRequestDispatcher(viewPage);
-        rd.forward(request, response); 
+        rd.forward(request, response);
     }
-    
-        @Override
+
+    @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
-    {
+            throws ServletException, IOException {
         processRequest(request, response);
     }
-    
+
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
-    {
+            throws ServletException, IOException {
         processRequest(request, response);
     }
 }

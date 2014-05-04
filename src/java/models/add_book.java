@@ -30,7 +30,7 @@ public class add_book extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         boolean bookSuccess;
-        String isbn = (String) request.getParameter("isbn").trim();
+        String isbn = (String) request.getParameter("isbn").trim().replace("-", "").replace(" ", "");
         String author = (String) request.getParameter("author").trim();
         String title = (String) request.getParameter("title").trim();
         String year = (String) request.getParameter("year").trim();

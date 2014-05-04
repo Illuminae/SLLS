@@ -30,6 +30,8 @@ public abstract class CommandFactory
                 command = new MyBooksCommand(request, response);
             } else if (userCommand.equalsIgnoreCase("add_book")){
                 command = new AddBookCommand(request,response);
+            } else if (userCommand.equalsIgnoreCase("lend_book")){
+                command = new LendBookCommand(request, response);
             }
             
         }

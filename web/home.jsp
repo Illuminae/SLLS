@@ -19,7 +19,7 @@
         <jsp:include page="/components/header.jsp"/>
         <div class="container">
             <div class="row">
-                <div class ="col-lg-7">
+                <div class ="col-lg-10">
                     <div class="panel panel-default">
                         <div class ="panel-body">
                             <div class ="page-header">
@@ -29,7 +29,7 @@
                         </div>
                     </div>
                 </div>
-                <div class ="col-lg-5">
+                <div class ="col-lg-2">
 
                 </div>
             </div>

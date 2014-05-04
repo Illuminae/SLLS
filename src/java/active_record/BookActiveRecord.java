@@ -66,8 +66,8 @@ public class BookActiveRecord extends DatabaseUtility {
         }
         return bookList;
     }
-    
-    public static ArrayList<BookActiveRecord> getBookList(RegisteredUserActiveRecord user){
+
+    public static ArrayList<BookActiveRecord> getBookList(RegisteredUserActiveRecord user) {
         ArrayList<BookActiveRecord> myBookList = new ArrayList<>();
         try {
             Connection con = getDatabaseConnection();
@@ -89,12 +89,60 @@ public class BookActiveRecord extends DatabaseUtility {
         }
         return myBookList;
     }
+
+    public static boolean isOwner(String isbn, int owner) {
+        boolean isOwner = false;
+        try {
+            Connection con = getDatabaseConnection();
+            PreparedStatement stmt = null;
+            stmt = con.prepareStatement("SELECT OWNER FROM BOOKS WHERE ISBN LIKE ?");
+            stmt.setString(1, isbn);
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()){
+            if (rs.getInt("OWNER") == owner){
+                isOwner = true;
+            } else { 
+                isOwner = false;
+            }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return isOwner;
+    }
+
+    public static void setPending(String isbn) {
+        try {
+            Connection con = getDatabaseConnection();
+            PreparedStatement stmt = null;
+            String status = "pending";
+            stmt = con.prepareStatement("UPDATE BOOKS SET STATUS = ? WHERE ISBN = ?");
+            stmt.setString(1, status);
+            stmt.setString(2, isbn);
+            int updateCount = stmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public static void approveRequest(String isbn) {
+        try {
+            Connection con = getDatabaseConnection();
+            PreparedStatement stmt = null;
+            stmt = con.prepareStatement("UPDATE BOOKS SET STATUS = 'borrowed' WHERE ISBN = ?");
+            stmt.setString(1, isbn);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     /**
      * Pushes data of an BookActiveRecord to DB
+     *
      * @return true if successful
      */
-  
-   public boolean insert() {
+    public boolean insert() {
         int updateCount = -1;
         try {
             Connection con = getDatabaseConnection();
@@ -114,18 +162,18 @@ public class BookActiveRecord extends DatabaseUtility {
             }
             /* To be implemented: Adding of Tags when new book is added
              if (updateCount == 1) {
-                stmt = con.prepareStatement("INSERT INTO BOOKS_TAGS (user_id, zip_code, town, street, house_no, iban) VALUES (?,?,?,?,?,?)");
-                stmt.setInt(1, this.user_id);
-                stmt.setString(2, this.zip_code);
-                stmt.setString(3, this.town);
-                stmt.setString(4, this.street);
-                stmt.setString(5, this.house_no);
-                stmt.setString(6, this.iban);
-                updateCount = stmt.executeUpdate();
-            } else {
-                return false;
-            }
-           */
+             stmt = con.prepareStatement("INSERT INTO BOOKS_TAGS (user_id, zip_code, town, street, house_no, iban) VALUES (?,?,?,?,?,?)");
+             stmt.setInt(1, this.user_id);
+             stmt.setString(2, this.zip_code);
+             stmt.setString(3, this.town);
+             stmt.setString(4, this.street);
+             stmt.setString(5, this.house_no);
+             stmt.setString(6, this.iban);
+             updateCount = stmt.executeUpdate();
+             } else {
+             return false;
+             }
+             */
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -133,7 +181,6 @@ public class BookActiveRecord extends DatabaseUtility {
         return 1 == updateCount;
 
     }
-
 
     public void setStatus(String status) {
         this.status = status;
