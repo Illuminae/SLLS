@@ -13,7 +13,7 @@
             <url>src/java/tags/GenerateTable.java</url>
             <bookmark id="3">
                 <name/>
-                <line>39</line>
+                <line>40</line>
                 <key/>
             </bookmark>
         </file>
@@ -28,14 +28,14 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Erik/Documents/NetBeansProjects/SLLS/src/java/commands/LoginCommand.java</file>
             <file>file:/C:/Users/Erik/Documents/NetBeansProjects/SLLS/src/java/commands/BookSearchCommand.java</file>
+            <file>file:/C:/Users/Erik/Documents/NetBeansProjects/SLLS/src/java/controller/Controller.java</file>
             <file>file:/C:/Users/Erik/Documents/NetBeansProjects/SLLS/src/java/commands/CommandFactory.java</file>
             <file>file:/C:/Users/Erik/Documents/NetBeansProjects/SLLS/src/java/models/user_login.java</file>
+            <file>file:/C:/Users/Erik/Documents/NetBeansProjects/SLLS/src/java/commands/MyBooksCommand.java</file>
             <file>file:/C:/Users/Erik/Documents/NetBeansProjects/SLLS/src/java/tags/GenerateTable.java</file>
-            <file>file:/C:/Users/Erik/Documents/NetBeansProjects/SLLS/src/java/commands/LogoutCommand.java</file>
-            <file>file:/C:/Users/Erik/Documents/NetBeansProjects/SLLS/web/book_search.jsp</file>
             <file>file:/C:/Users/Erik/Documents/NetBeansProjects/SLLS/web/components/header.jsp</file>
+            <file>file:/C:/Users/Erik/Documents/NetBeansProjects/SLLS/web/myBooks.jsp</file>
             <file>file:/C:/Users/Erik/Documents/NetBeansProjects/SLLS/web/index.jsp</file>
             <file>file:/C:/Users/Erik/Documents/NetBeansProjects/SLLS/src/java/active_record/BookActiveRecord.java</file>
         </group>

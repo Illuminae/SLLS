@@ -28,6 +28,8 @@ public abstract class CommandFactory
                 command = new BookSearchCommand(request, response);
             } else if (userCommand.equalsIgnoreCase("mybooks")){
                 command = new MyBooksCommand(request, response);
+            } else if (userCommand.equalsIgnoreCase("add_book")){
+                command = new AddBookCommand(request,response);
             }
             
         }

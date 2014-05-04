@@ -24,7 +24,7 @@
         <jsp:include page="components/header.jsp"/>
         <div class="container">
             <div class="row">
-                <div class ="col-lg-9">
+                <div class ="col-lg-12">
                     <div class="panel panel-default">
                         <div class ="panel-body">
                             <div class ="page-header">
@@ -80,83 +80,102 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <form class="form-horizontal" action="Controller" method="post">
-                                <fieldset>
+            </div>
+        </div>
+        <div class="row"></div>
+        <div class="col-lg-10">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <c:set var="success" value="${requestScope.bookSuccess}" />
+                    <c:choose>
+                        <c:when test = "${success != null && success}">
 
-                                    <!-- Form Name -->
-                                    <legend>Do you have a new book to share?</legend>
+                            <div class="alert alert-dismissable alert-success user-feedback">
+                                <button type="button" class="close" data-dismiss="alert">×</button>
+                                <strong>Well done!</strong> Book successfully added!
+                            </div>
+                        </c:when>
+                        <c:when test ="${success != null && !success}">
 
-                                    <!-- Appended Input-->
-                                    <div class="form-group">
-                                        <label class="col-md-4 control-label" for="isbn"></label>
-                                        <div class="col-md-6">
-                                            <div class="input-group">
-                                                <input id="isbn" name="isbn" class="form-control" placeholder="ISBN" type="text" required="">
-                                                <span class="input-group-addon">ISBN</span>
-                                            </div>
+                            <div class="alert alert-dismissable alert-danger user-feedback">
+                                <button type="button" class="close" data-dismiss="alert">×</button>
+                                <strong>Sorry!</strong> Something went wrong. Please try again.
+                            </div>
 
-                                        </div>
-                                    </div>
-                                    <!-- Appended Input-->
-                                    <div class="form-group">
-                                        <label class="col-md-4 control-label" for="author"></label>
-                                        <div class="col-md-6">
-                                            <div class="input-group">
-                                                <input id="author" name="author" class="form-control" placeholder="Author" type="text" required="">
-                                                <span class="input-group-addon">Author</span>
-                                            </div>
+                        </c:when>
+                    </c:choose>
+                    <form class="form-horizontal" action="Controller" method="post">
+                        <fieldset>
 
-                                        </div>
-                                    </div>
-                                    <!-- Appended Input-->
-                                    <div class="form-group">
-                                        <label class="col-md-4 control-label" for="title"></label>
-                                        <div class="col-md-6">
-                                            <div class="input-group">
-                                                <input id="title" name="title" class="form-control" placeholder="Title" type="text" required="">
-                                                <span class="input-group-addon">Title</span>
-                                            </div>
+                            <!-- Form Name -->
+                            <legend>Do you have a new book to share?</legend>
 
-                                        </div>
-                                    </div>
-                                    <!-- Appended Input-->
-                                    <div class="form-group">
-                                        <label class="col-md-4 control-label" for="year"></label>
-                                        <div class="col-md-6">
-                                            <div class="input-group">
-                                                <input id="year" name="year" class="form-control" placeholder="Year of Publication" type="text" required="">
-                                                <span class="input-group-addon">Year</span>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <!-- Appended Input-->
-                                    <div class="form-group">
-                                        <label class="col-md-4 control-label" for="appendedtext"></label>
-                                        <div class="col-md-6">
-                                            <div class="input-group">
-                                                <input id="appendedtext" name="appendedtext" class="form-control" placeholder="Publisher" type="text">
-                                                <span class="input-group-addon">Publisher</span>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <!-- Button -->
-                                    <div class="form-group">
-                                        <label class="col-md-4 control-label" for="add_book"></label>
-                                        <div class="col-md-4">
-                                            <button id="add_book" name="add_book" class="btn btn-primary">Add Book</button>
-                                        </div>
+                            <!-- Appended Input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="isbn"></label>
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                        <input id="isbn" name="isbn" class="form-control" placeholder="ISBN" type="text" required="">
+                                        <span class="input-group-addon">ISBN</span>
                                     </div>
 
-                                </fieldset>
-                            </form>
+                                </div>
+                            </div>
+                            <!-- Appended Input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="author"></label>
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                        <input id="author" name="author" class="form-control" placeholder="Author" type="text" required="">
+                                        <span class="input-group-addon">Author</span>
+                                    </div>
 
-                        </div>
-                    </div>
+                                </div>
+                            </div>
+                            <!-- Appended Input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="title"></label>
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                        <input id="title" name="title" class="form-control" placeholder="Title" type="text" required="">
+                                        <span class="input-group-addon">Title</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- Appended Input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="year"></label>
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                        <input id="year" name="year" class="form-control" placeholder="Year of Publication" type="text" required="">
+                                        <span class="input-group-addon">Year</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- Appended Input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="publisher"></label>
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                        <input id="publisher" name="publisher" class="form-control" placeholder="Publisher" type="text">
+                                        <span class="input-group-addon">Publisher</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- Button -->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="command"></label>
+                                <div class="col-md-4">
+                                    <button id="command" name="command" value="add_book" class="btn btn-primary">Add Book</button>
+                                </div>
+                            </div>
+
+                        </fieldset>
+                    </form>
+
                 </div>
             </div>
         </div>

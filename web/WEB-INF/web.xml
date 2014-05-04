@@ -16,6 +16,10 @@
         <servlet-name>LogoutCommand</servlet-name>
         <servlet-class>commands.LogoutCommand</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>add_book</servlet-name>
+        <servlet-class>models.add_book</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Controller</servlet-name>
         <url-pattern>/Controller</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>LogoutCommand</servlet-name>
         <url-pattern>/LogoutCommand</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>add_book</servlet-name>
+        <url-pattern>/add_book</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>60</session-timeout>

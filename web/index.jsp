@@ -12,13 +12,19 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href= "css/bootstrap.min.css" rel = "stylesheet">
         <link href= "css/styles.css" rel = "stylesheet">
+        <c:set var="login" scope="session" value="${sessionScope.isVerified}"/>
+        <c:if test="${login != null && login}">
+            <script language="javascript">
+                window.location.href = "/SLLS/home.jsp";
+            </script>
+        </c:if>
 
     </head>
     <body>
 
         <jsp:include page="/components/header.jsp"/>
-        
-       <div class ="container">
+
+        <div class ="container">
             <div class ="row">
                 <div class ="col-lg-7">
                     <div class = "panel panel-default">
@@ -52,12 +58,12 @@ and open the template in the editor.
                                     </div>
                                 </c:when>
                                 <c:when test ="${success != null && !success}">
-                                   
+
                                     <div class="alert alert-dismissable alert-danger user-feedback">
                                         <button type="button" class="close" data-dismiss="alert">×</button>
                                         <strong>Sorry!</strong> Something went wrong. Please try again.
                                     </div>
-                                    
+
                                 </c:when>
                             </c:choose>
                             <div class ="page-header">
