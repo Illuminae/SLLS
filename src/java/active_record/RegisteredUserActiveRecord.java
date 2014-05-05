@@ -214,6 +214,30 @@ public class RegisteredUserActiveRecord extends DatabaseUtility {
 
     }
 
+    public static ArrayList<RegisteredUserActiveRecord> getUserList(int user_id) {
+        ArrayList<RegisteredUserActiveRecord> userList = new ArrayList<RegisteredUserActiveRecord>();
+        try {
+            Connection con = getDatabaseConnection();
+            PreparedStatement stmt = null;
+            stmt = con.prepareStatement("SELECT * FROM SERVICE_USERS_FULL WHERE USER_ID = ?");
+            stmt.setInt(1, user_id);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                RegisteredUserActiveRecord e = new RegisteredUserActiveRecord(rs.getString("FIRST_NAME"),
+                        rs.getString("LAST_NAME"), rs.getString("USER_NAME"), rs.getString("PASSWORD"), rs.getInt("USER_TYPE"),
+                        rs.getString("ZIP_CODE"), rs.getString("TOWN"), rs.getString("STREET"),
+                        rs.getString("HOUSE_NO"), rs.getInt("TOTAL_FINES"), rs.getString("IBAN"), rs.getInt("USER_ID"));
+                userList.add(e);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return userList;
+
+    }
+
     public void verifyUserdata(String user, String password, HttpServletRequest request) {
         boolean isVerified = false;
         try {
@@ -235,6 +259,7 @@ public class RegisteredUserActiveRecord extends DatabaseUtility {
 
     /**
      * Pushes data in an activeRecord to database
+     *
      * @return true if successful
      */
     public boolean insert() {

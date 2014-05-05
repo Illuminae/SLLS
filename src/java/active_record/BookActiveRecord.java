@@ -239,6 +239,35 @@ public class BookActiveRecord extends DatabaseUtility {
         return 1 == updateCount;
 
     }
+    /**
+     * Lets you update all values except ISBN
+     * @return boolean true if successful, else false
+     */
+        public boolean update() {
+        int updateCount = -1;
+        try {
+            Connection con = getDatabaseConnection();
+            PreparedStatement stmt = null;
+            try {
+                stmt = con.prepareStatement("UPDATE BOOKS SET STATUS = ?, AUTHOR = ?, TITLE = ?, PUB_YEAR = ?, "
+                        + "PUBLISHER = ?, OWNER = ? WHERE ISBN = ?");
+                stmt.setString(1, this.status);
+                stmt.setString(7, this.isbn);
+                stmt.setString(2, this.author);
+                stmt.setString(3, this.title);
+                stmt.setInt(4, this.pub_year);
+                stmt.setString(5, this.publisher);
+                stmt.setInt(6, this.owner);
+                updateCount = stmt.executeUpdate();
+            } catch (SQLException sqle) {
+                sqle.printStackTrace();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 1 == updateCount;
+
+    }
 
     public void setStatus(String status) {
         this.status = status;
