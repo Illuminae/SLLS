@@ -8,6 +8,7 @@ package commands;
 import active_record.BookActiveRecord;
 import active_record.RegisteredUserActiveRecord;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -39,15 +40,18 @@ public class LendBookCommand implements Command {
          */
         if(user != null){
         boolean isOwner = BookActiveRecord.isOwner(isbn, user.getUser_id());
-    
+        ArrayList<BookActiveRecord> requestedBook = BookActiveRecord.getBookList(isbn);
         /**
          * Value whether lending was successful is written in request
          */
-        if (isOwner){
-        request.setAttribute("lendSuccess", !isOwner);
+        boolean lendSuccess;
+        if (isOwner || requestedBook.get(0).getStatus().equalsIgnoreCase("pending") || requestedBook.get(0).getStatus().equalsIgnoreCase("borrowed")){
+        lendSuccess = false;
+        request.setAttribute("lendSuccess", lendSuccess);
         } else {
+        lendSuccess = true;
         BookActiveRecord.setPending(isbn);
-        request.setAttribute("lendSuccess", !isOwner);
+        request.setAttribute("lendSuccess", lendSuccess);
         }
         viewName = "/Controller?command=booksearch";
         } else {

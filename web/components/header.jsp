@@ -27,8 +27,6 @@
                         <li class = "active"><a href = "/SLLS/home.jsp">Home</a></li>
                         </c:when>
                     </c:choose>
-                <li><a href = "/SLLS/public/downloads.jsp">Downloads</a></li>
-                <li><a href = "/SLLS/public/sitenotice.jsp">Site Notice</a></li>
                     <c:choose>
                         <c:when test="${login == null || !login}">
                         </c:when>
@@ -39,6 +37,7 @@
                                 <li><a href = "/SLLS/Controller?command=booksearch">Book Search</a></li>
                                 <li><a href = "#">User Settings</a></li>
                                 <li><a href = "/SLLS/Controller?command=mybooks">My Books</a></li>
+                                <li><a href="/SLLS/Controller?command=borrow_requests">Requests</a></li>
                                 </c:when>
                                 <c:when test="${user_type == 3 ||user_type == 4}">
                                 <li><a href = "#">Review Section</a></li>
@@ -47,6 +46,8 @@
                             </c:choose>
                         </c:when>
                     </c:choose>
+                <li><a href = "/SLLS/public/downloads.jsp">Downloads</a></li>
+                <li><a href = "/SLLS/public/sitenotice.jsp">Site Notice</a></li>
             </ul>
             <c:choose>
                 <c:when test="${login == null || !login}">

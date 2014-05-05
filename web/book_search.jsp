@@ -87,7 +87,7 @@
 
                                     <div class="alert alert-dismissable alert-danger user-feedback">
                                         <button type="button" class="close" data-dismiss="alert">×</button>
-                                        <strong>Sorry!</strong> Something went wrong. Please try again.
+                                        <strong>Sorry!</strong> You either chose your own book or it is already taken.
                                     </div>
 
                                 </c:when>

@@ -1,3 +1,4 @@
+<%@page import="active_record.RegisteredUserActiveRecord"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%-- 
     Document   : home
@@ -25,7 +26,17 @@
                             <div class ="page-header">
                                 <h3>Welcome back!</h3>
                             </div>
+                            
+                            <button id="check_button" type="button" class="btn btn-default btn-sm btn-block hidden">Check now whether you have any pending borrowing requests!</button>
                             <p>Placeholder, Display new books or reports?</p>
+                            <%--<%
+                                RegisteredUserActiveRecord user = (RegisteredUserActiveRecord) request.getSession().getAttribute("currentUser");
+                            %>
+                            <%=user.getFirst_name()%>
+                            <%=user.getLast_name()%>
+                            <%=user.getUser_id()%>--%>
+
+
                         </div>
                     </div>
                 </div>

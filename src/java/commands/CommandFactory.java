@@ -32,6 +32,8 @@ public abstract class CommandFactory
                 command = new AddBookCommand(request,response);
             } else if (userCommand.equalsIgnoreCase("lend_book")){
                 command = new LendBookCommand(request, response);
+            } else if (userCommand.equalsIgnoreCase("borrow_requests")){
+                command = new BorrowRequestCommand(request, response);
             }
             
         }

@@ -66,6 +66,64 @@ public class BookActiveRecord extends DatabaseUtility {
         }
         return bookList;
     }
+    /**
+     * 
+     * @param isbn
+     * @return List with one book
+     */
+        public static ArrayList<BookActiveRecord> getBookList(String isbn) {
+        ArrayList<BookActiveRecord> bookList = new ArrayList<>();
+        try {
+            Connection con = getDatabaseConnection();
+            PreparedStatement stmt = null;
+            stmt = con.prepareStatement("SELECT * FROM BOOKS WHERE ISBN = ?");
+            stmt.setString(1, isbn);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                BookActiveRecord e = new BookActiveRecord(rs.getString("STATUS"),
+                        rs.getString("ISBN"), rs.getString("AUTHOR"), rs.getString("TITLE"), rs.getInt("PUB_YEAR"),
+                        rs.getString("PUBLISHER"), rs.getInt("OWNER"));
+                bookList.add(e);
+            }
+            rs.close();
+            stmt.close();
+
+        } catch (Exception sqle) {
+            sqle.printStackTrace();
+        }
+        return bookList;
+    }
+
+        /**
+         * 
+         * @param user
+         * @return List with all books that a user has to deny or accept
+         */
+    public static ArrayList<BookActiveRecord> getRequestedBookList(RegisteredUserActiveRecord user) {
+        ArrayList<BookActiveRecord> myRequestedBookList = new ArrayList<>();
+        try {
+            Connection con = getDatabaseConnection();
+            PreparedStatement stmt = null;
+            stmt = con.prepareStatement("SELECT * FROM BOOKS WHERE OWNER = ? AND STATUS = ?");
+            stmt.setInt(1, user.getUser_id());
+            stmt.setString(2, "pending");
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                BookActiveRecord e = new BookActiveRecord(rs.getString("STATUS"),
+                        rs.getString("ISBN"), rs.getString("AUTHOR"), rs.getString("TITLE"), rs.getInt("PUB_YEAR"),
+                        rs.getString("PUBLISHER"), rs.getInt("OWNER"));
+                myRequestedBookList.add(e);
+            }
+            rs.close();
+            stmt.close();
+
+        } catch (Exception sqle) {
+            sqle.printStackTrace();
+        }
+        return myRequestedBookList;
+
+    }
+    
 
     public static ArrayList<BookActiveRecord> getBookList(RegisteredUserActiveRecord user) {
         ArrayList<BookActiveRecord> myBookList = new ArrayList<>();
@@ -98,12 +156,12 @@ public class BookActiveRecord extends DatabaseUtility {
             stmt = con.prepareStatement("SELECT OWNER FROM BOOKS WHERE ISBN LIKE ?");
             stmt.setString(1, isbn);
             ResultSet rs = stmt.executeQuery();
-            if(rs.next()){
-            if (rs.getInt("OWNER") == owner){
-                isOwner = true;
-            } else { 
-                isOwner = false;
-            }
+            if (rs.next()) {
+                if (rs.getInt("OWNER") == owner) {
+                    isOwner = true;
+                } else {
+                    isOwner = false;
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
