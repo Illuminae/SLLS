@@ -17,6 +17,19 @@
     </head>
     <body>
         <jsp:include page="../components/header.jsp"/>
-        <h1>Copyright +++</h1>
+        <div class="container">
+            <div class="row">
+                <div class ="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class ="panel-body">
+                            <div class ="page-header">
+                                <h3>Copyright</h3>
+                                <p>(c) Erik Baumert, Stafford 2014</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>

@@ -99,6 +99,30 @@ public class LentBooksActiveRecord extends DatabaseUtility {
      * @param isbn
      * @return
      */
+        public static ArrayList<LentBooksActiveRecord> getBookList(int user_id) {
+        ArrayList<LentBooksActiveRecord> bookList = new ArrayList<>();
+        try {
+            Connection con = getDatabaseConnection();
+            PreparedStatement stmt = null;
+            stmt = con.prepareStatement("SELECT * FROM LENT_BOOKS WHERE USER_ID = ? AND ACTIVE = ?");
+            stmt.setInt(1, user_id);
+            stmt.setBoolean(2, true);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                LentBooksActiveRecord e = new LentBooksActiveRecord(rs.getInt("OVERDUE_FINES"),
+                        rs.getDate("START_DATE"), rs.getInt("DURATION"), rs.getInt("USER_ID"), rs.getInt("OWNER"),
+                        rs.getString("ISBN"), rs.getBoolean("ACTIVE"));
+                bookList.add(e);
+            }
+            rs.close();
+            stmt.close();
+
+        } catch (Exception sqle) {
+            sqle.printStackTrace();
+        }
+        return bookList;
+    }
+        
     public static ArrayList<LentBooksActiveRecord> getBookData(String isbn) {
         ArrayList<LentBooksActiveRecord> bookList = new ArrayList<>();
         try {

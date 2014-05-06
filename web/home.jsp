@@ -14,6 +14,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href= "css/bootstrap.min.css" rel = "stylesheet">
+        <script type="text/javascript" src="/SLLS/js/jquery.js"></script>
         <link href= "css/styles.css" rel = "stylesheet">
     </head>
     <body>
@@ -26,16 +27,15 @@
                             <div class ="page-header">
                                 <h3>Welcome back!</h3>
                             </div>
-                            
-                            <button id="check_button" type="button" class="btn btn-default btn-sm btn-block hidden">Check now whether you have any pending borrowing requests!</button>
-                            <p>Placeholder, Display new books or reports?</p>
-                            <%--<%
-                                RegisteredUserActiveRecord user = (RegisteredUserActiveRecord) request.getSession().getAttribute("currentUser");
-                            %>
-                            <%=user.getFirst_name()%>
-                            <%=user.getLast_name()%>
-                            <%=user.getUser_id()%>--%>
-
+                            <c:set var="user_type" value="${sessionScope.userType}"/>
+                            <c:choose>
+                                <c:when test="${user_type == 1 ||user_type == 2}">
+                                    <button id="check_button" type="button" class="btn btn-default btn-lg btn-block">Check now whether you have any pending borrowing requests!</button>
+                                </c:when>
+                                <c:when test="${user_type == 3 ||user_type == 4}">
+                                    ..and have a nice day!
+                                </c:when>
+                            </c:choose>
 
                         </div>
                     </div>
@@ -45,5 +45,12 @@
                 </div>
             </div>
         </div>
+        <script type='text/javascript'>
+            $(document).ready(function() {
+                $('#check_button').click(function() {
+                    window.location.href = "/SLLS/Controller?command=borrow_requests";
+                });
+            });
+        </script>
     </body>
 </html>

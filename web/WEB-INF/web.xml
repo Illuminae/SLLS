@@ -9,6 +9,10 @@
         <servlet-class>models.create_user</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>approve_request</servlet-name>
+        <servlet-class>models.approve_request</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>user_login</servlet-name>
         <servlet-class>models.user_login</servlet-class>
     </servlet>
@@ -19,6 +23,10 @@
     <servlet>
         <servlet-name>add_book</servlet-name>
         <servlet-class>models.add_book</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>my_books</servlet-name>
+        <servlet-class>models.my_books</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Controller</servlet-name>
@@ -40,7 +48,15 @@
         <servlet-name>add_book</servlet-name>
         <url-pattern>/add_book</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>approve_request</servlet-name>
+        <url-pattern>/approve_request</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>my_books</servlet-name>
+        <url-pattern>/my_books</url-pattern>
+    </servlet-mapping>
     <session-config>
-        <session-timeout>60</session-timeout>
+        <session-timeout>30</session-timeout>
     </session-config>
 </web-app>
