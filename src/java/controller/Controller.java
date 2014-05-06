@@ -29,9 +29,15 @@ public class Controller extends HttpServlet {
          * method execute of respective command created by factory executed,
          * returns respective view
          */
+        
+        String userAgent = request.getHeader("user-agent").trim().toLowerCase();
+        String viewPath = "";
+        if (userAgent.startsWith("sllsclient")) {
+            viewPath = "xml/";
+        } 
         String viewPage;
         if (command == null) {
-            viewPage = "/index.jsp";
+            viewPage = viewPath + "/index.jsp";
         } else {
             viewPage = command.execute();
         }

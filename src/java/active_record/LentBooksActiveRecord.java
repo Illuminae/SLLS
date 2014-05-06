@@ -122,7 +122,11 @@ public class LentBooksActiveRecord extends DatabaseUtility {
         }
         return bookList;
     }
-        
+        /**
+         * 
+         * @param isbn
+         * @return 
+         */
     public static ArrayList<LentBooksActiveRecord> getBookData(String isbn) {
         ArrayList<LentBooksActiveRecord> bookList = new ArrayList<>();
         try {

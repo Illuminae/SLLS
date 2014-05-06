@@ -35,6 +35,10 @@ public abstract class CommandFactory {
                 command = new ApproveRequestCommand(request, response);
             } else if (userCommand.equalsIgnoreCase("reject_request")) {
                 command = new RejectRequestCommand(request, response);
+            } else if (userCommand.equalsIgnoreCase("return_book")) {
+                command = new ReturnBookCommand(request, response);
+            } else if (userCommand.equalsIgnoreCase("purchase")){
+                command = new PurchaseCommand(request, response);
             }
 
         }

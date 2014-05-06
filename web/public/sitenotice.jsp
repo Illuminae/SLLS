@@ -25,6 +25,8 @@
                             <div class ="page-header">
                                 <h3>Copyright</h3>
                                 <p>(c) Erik Baumert, Stafford 2014</p>
+                                <p>Premium Membership is 10 Euros and will be collected from your provided bank account.</p>
+                                <p>Cost of late return is 2 Euros per occasion.</p>
                             </div>
                         </div>
                     </div>

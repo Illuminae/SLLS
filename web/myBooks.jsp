@@ -30,12 +30,6 @@
                             <div class ="page-header">
                                 <h3>SLLS - Your Book Collection</h3>
                             </div>
-                            <script type="text/javascript">
-                                $(document).ready(function() {
-                                    $('#table_id').DataTable();
-                                    $('#table_od').DataTable();
-                                });
-                            </script>
                             <table id="table_id" class="table table-hover table-striped table-bordered display">
                                 <thead>
                                     <tr>
@@ -97,7 +91,7 @@
                                 </thead>
                                 <tbody>
                                     <t:GenerateTable list="${requestScope.myLentBooksList}">
-                                        <tr>
+                                        <tr class="selectable">
                                             <td>
                                                 ${isbn}
                                             </td>
@@ -114,6 +108,24 @@
                                     </t:GenerateTable>
                                 </tbody>
                             </table>
+                            <button id="return_button" type="button" class="btn btn-primary btn-sm btn-block hidden">I sent it back!</button>
+                            <c:set var="fine" value="${requestScope.payFine}" />
+                            <c:choose>
+                                <c:when test = "${fine != null && fine}">
+
+                                    <div class="alert alert-dismissable alert-danger user-feedback">
+                                        <button type="button" class="close" data-dismiss="alert">×</button>
+                                        <strong>Your return is late!</strong> We will charge 2 Euros from your bank Account.
+                                    </div>
+                                </c:when>
+                                <c:when test ="${fine != null && !fine}">
+
+                                    <div class="alert alert-dismissable alert-success user-feedback">
+                                        <button type="button" class="close" data-dismiss="alert">×</button>
+                                        <strong>Well Done!</strong> You returned your book in time!
+                                    </div>
+                                </c:when>
+                            </c:choose>
                         </div>
                     </div>
                 </div>
@@ -215,5 +227,21 @@
                 </div>
             </div>
         </div>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#table_id').DataTable();
+                $('#table_od').DataTable();
+
+                $('.selectable').click(function() {
+                    $('.selectedRow').removeClass("selectedRow");
+                    $(this).addClass("selectedRow");
+                    $('#return_button').removeClass("hidden");
+                });
+
+                $('#return_button').click(function() {
+                    window.location.href = "/SLLS/Controller?command=return_book&isbn=" + $('.selectedRow').get(0).childNodes[1].innerText;
+                });
+            });
+        </script>
     </body>
 </html>

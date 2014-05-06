@@ -35,7 +35,7 @@
                             <c:choose>
                                 <c:when test="${user_type == 1 ||user_type == 2}">
                                 <li><a href = "/SLLS/Controller?command=booksearch">Book Search</a></li>
-                                <li><a href = "#">User Settings</a></li>
+                                <li><a href = "/SLLS/settings.jsp">User Settings</a></li>
                                 <li><a href = "/SLLS/Controller?command=mybooks">My Books</a></li>
                                 <li><a href="/SLLS/Controller?command=borrow_requests">Requests</a></li>
                                 </c:when>

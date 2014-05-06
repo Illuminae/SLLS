@@ -28,6 +28,10 @@
         <servlet-name>my_books</servlet-name>
         <servlet-class>models.my_books</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>mark_returned</servlet-name>
+        <servlet-class>models.mark_returned</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Controller</servlet-name>
         <url-pattern>/Controller</url-pattern>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>my_books</servlet-name>
         <url-pattern>/my_books</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>mark_returned</servlet-name>
+        <url-pattern>/mark_returned</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

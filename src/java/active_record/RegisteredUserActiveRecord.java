@@ -307,6 +307,32 @@ public class RegisteredUserActiveRecord extends DatabaseUtility {
 
     }
 
+    public boolean update() {
+        int updateCount = -1;
+        try {
+            Connection con = getDatabaseConnection();
+            PreparedStatement stmt = null;
+            try {
+                stmt = con.prepareStatement("UPDATE REGISTERED_USERS SET FIRST_NAME = ?, LAST_NAME = ?, "
+                        + "USER_NAME = ?, "
+                        + "PASSWORD = ?, USER_TYPE = ? WHERE USER_ID = ?");
+                stmt.setString(1, this.first_name);
+                stmt.setString(2, this.last_name);
+                stmt.setString(3, this.user_name);
+                stmt.setString(4, this.password);
+                stmt.setInt(5, this.user_type);
+                stmt.setInt(6, this.user_id);
+                updateCount = stmt.executeUpdate();
+            } catch (SQLException sqle) {
+                sqle.printStackTrace();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 1 == updateCount;
+
+    }
+
     public boolean delete() {
 
         return false;
