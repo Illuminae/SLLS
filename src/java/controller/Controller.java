@@ -41,7 +41,7 @@ public class Controller extends HttpServlet {
         } else {
             viewPage = command.execute();
         }
-        RequestDispatcher rd = request.getRequestDispatcher(viewPage);
+        RequestDispatcher rd = request.getRequestDispatcher(viewPath + viewPage);
         rd.forward(request, response);
     }
 

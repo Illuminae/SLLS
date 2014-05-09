@@ -28,19 +28,22 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/Erik/Documents/NetBeansProjects/SLLS/src/java/commands/LoginCommand.java</file>
+            <file>file:/C:/Users/Erik/Documents/NetBeansProjects/SLLS/src/java/commands/LendBookCommand.java</file>
+            <file>file:/C:/Users/Erik/Documents/NetBeansProjects/SLLS/src/java/controller/Controller.java</file>
+            <file>file:/C:/Users/Erik/Documents/NetBeansProjects/SLLS/src/java/models/approve_request.java</file>
+            <file>file:/C:/Users/Erik/Documents/NetBeansProjects/SLLS/src/java/models/user_login.java</file>
             <file>file:/C:/Users/Erik/Documents/NetBeansProjects/SLLS/src/java/commands/MyBooksCommand.java</file>
-            <file>file:/C:/Users/Erik/Documents/NetBeansProjects/SLLS/src/java/commands/RejectRequestCommand.java</file>
+            <file>file:/C:/Users/Erik/Documents/NetBeansProjects/SLLS/src/java/active_record/RegisteredUserActiveRecord.java</file>
+            <file>file:/C:/Users/Erik/Documents/NetBeansProjects/SLLS/web/settings.jsp</file>
+            <file>file:/C:/Users/Erik/Documents/NetBeansProjects/SLLS/web/borrow_requests.jsp</file>
             <file>file:/C:/Users/Erik/Documents/NetBeansProjects/SLLS/web/book_search.jsp</file>
             <file>file:/C:/Users/Erik/Documents/NetBeansProjects/SLLS/web/myBooks.jsp</file>
-            <file>file:/C:/Users/Erik/Documents/NetBeansProjects/SLLS/src/java/commands/ApproveRequestCommand.java</file>
-            <file>file:/C:/Users/Erik/Documents/NetBeansProjects/SLLS/src/java/active_record/BookActiveRecord.java</file>
-            <file>file:/C:/Users/Erik/Documents/NetBeansProjects/SLLS/src/java/commands/LendBookCommand.java</file>
-            <file>file:/C:/Users/Erik/Documents/NetBeansProjects/SLLS/src/java/models/user_login.java</file>
-            <file>file:/C:/Users/Erik/Documents/NetBeansProjects/SLLS/src/java/models/approve_request.java</file>
-            <file>file:/C:/Users/Erik/Documents/NetBeansProjects/SLLS/web/WEB-INF/web.xml</file>
-            <file>file:/C:/Users/Erik/Documents/NetBeansProjects/SLLS/web/borrow_requests.jsp</file>
-            <file>file:/C:/Users/Erik/Documents/NetBeansProjects/SLLS/src/java/active_record/LentBooksActiveRecord.java</file>
             <file>file:/C:/Users/Erik/Documents/NetBeansProjects/SLLS/web/index.jsp</file>
+            <file>file:/C:/Users/Erik/Documents/NetBeansProjects/SLLS/web/public/sitenotice.jsp</file>
+            <file>file:/C:/Users/Erik/Documents/NetBeansProjects/SLLS/src/java/commands/ApproveRequestCommand.java</file>
+            <file>file:/C:/Users/Erik/Documents/NetBeansProjects/SLLS/src/java/models/mark_returned.java</file>
+            <file>file:/C:/Users/Erik/Documents/NetBeansProjects/SLLS/src/java/commands/ReturnBookCommand.java</file>
         </group>
     </open-files>
 </project-private>
